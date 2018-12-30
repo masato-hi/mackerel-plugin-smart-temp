@@ -1,0 +1,38 @@
+#!/bin/bash
+
+meta() {
+  echo "# mackerel-agent-plugin"
+  cat <<EOS
+{
+  "graphs": {
+    "smart.#": {
+      "label": "S.M.A.R.T. Temperature",
+      "unit": "integer",
+      "metrics": [
+        {
+          "name": "temperature",
+          "label": "Temperature",
+          "stacked": false
+        }
+      ]
+    }
+  }
+}
+EOS
+}
+
+metrics() {
+  time=$(date +"%s")
+  for device in $(ls /dev/sd? |  sed 's/\/dev\///'); do
+    value=$(smartctl -A "/dev/${device}" 2>/dev/null | grep Temperature | awk '{print $10}')
+    if [ -n "$value" ]; then
+      echo -e "smart.${device}.temperature\t${value}\t${time}"
+    fi
+  done
+}
+
+if [ -n "${MACKEREL_AGENT_PLUGIN_META}" ]; then
+  meta
+else
+  metrics
+fi
