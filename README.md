@@ -1,4 +1,5 @@
 # mackerel-plugin-smart-temp
+Add metrics of temperature obtained from S.M.A.R.T. to mackerel.
 
 ## Installation
 #### Please install smartctl in advance.
