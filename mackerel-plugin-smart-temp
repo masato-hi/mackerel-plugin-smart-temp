@@ -22,9 +22,9 @@ EOS
 }
 
 metrics() {
-  time=$(date +"%s")
+  local time=$(date +"%s")
   for device in $(ls /dev/sd? |  sed 's/\/dev\///'); do
-    value=$(smartctl -A "/dev/${device}" 2>/dev/null | grep Temperature | awk '{print $10}')
+    local value=$(smartctl -A "/dev/${device}" 2>/dev/null | grep Temperature | awk '{print $10}')
     if [ -n "$value" ]; then
       echo -e "smart.${device}.temperature\t${value}\t${time}"
     fi
