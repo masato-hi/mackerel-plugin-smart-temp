@@ -1,4 +1,4 @@
-#!/bin/bash -eu
+#!/bin/bash
 
 meta() {
   echo "# mackerel-agent-plugin"
