@@ -1,7 +1,7 @@
 #!/bin/bash
 
 meta() {
-  echo "# mackerel-agent-plugin"
+  echo '# mackerel-agent-plugin'
   cat <<EOS
 {
   "graphs": {
