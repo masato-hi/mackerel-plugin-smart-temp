@@ -6,7 +6,7 @@ meta() {
 {
   "graphs": {
     "smart.temperature": {
-      "label": "S.M.A.R.T. Temperature",
+      "label": "S.M.A.R.T. Temperatures",
       "unit": "integer",
       "metrics": [
         {
