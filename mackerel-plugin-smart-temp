@@ -5,12 +5,12 @@ meta() {
   cat <<EOS
 {
   "graphs": {
-    "smart.#": {
+    "smart.temperature": {
       "label": "S.M.A.R.T. Temperature",
       "unit": "integer",
       "metrics": [
         {
-          "name": "temperature",
+          "name": "#",
           "label": "Temperature",
           "stacked": false
         }
@@ -26,7 +26,7 @@ metrics() {
   for device in $(ls /dev/sd? |  sed 's/\/dev\///'); do
     local value=$(smartctl -A "/dev/${device}" 2>/dev/null | grep Temperature | awk '{print $10}')
     if [ -n "$value" ]; then
-      echo -e "smart.${device}.temperature\t${value}\t${time}"
+      echo -e "smart.temperature.${device}\t${value}\t${time}"
     fi
   done
 }
