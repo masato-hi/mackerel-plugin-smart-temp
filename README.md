@@ -32,7 +32,7 @@ service mackerel-agent restart
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/masato-hi/swizzle.
+Bug reports and pull requests are welcome on GitHub at https://github.com/masato-hi/mackerel-plugin-smart-temp.
 
 
 ## License
