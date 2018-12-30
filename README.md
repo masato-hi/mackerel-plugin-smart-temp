@@ -20,7 +20,7 @@ chmod +x /usr/local/bin/mackerel-plugin-smart-temp
 
 #### Please add the following contents to /etc/mackerel-agent/mackerel-agent.conf
 ```
-[plugin.metrics.smart-temperature]
+[plugin.metrics.smart-temp]
 command = "mackerel-plugin-smart-temp"
 ```
 
