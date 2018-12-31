@@ -24,9 +24,9 @@ chmod +x /usr/local/bin/mackerel-plugin-smart-temp
 command = "mackerel-plugin-smart-temp"
 ```
 
-#### Please restart mackerel-agent.
+#### Please reload mackerel-agent.
 ```
-service mackerel-agent restart
+service mackerel-agent reload
 ```
 
 
