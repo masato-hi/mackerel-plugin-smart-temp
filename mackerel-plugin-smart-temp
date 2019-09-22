@@ -23,12 +23,24 @@ EOS
 
 metrics() {
   local time=$(date +"%s")
-  for device in $(ls /dev/sd? |  sed 's/\/dev\///'); do
-    local value=$(smartctl -A "/dev/${device}" 2>/dev/null | grep Temperature | awk '{print $10}')
-    if [ -n "$value" ]; then
-      echo -e "smart.temperature.${device}\t${value}\t${time}"
-    fi
-  done
+
+  if [ -n "$(ls /dev/sd? 2>/dev/null)" ]; then
+    for device in $(ls /dev/sd? |  sed 's/\/dev\///'); do
+      local value=$(smartctl -A "/dev/${device}" 2>/dev/null | grep Temperature | head -n 1 | awk '{print $10}')
+      if [ -n "$value" ]; then
+        echo -e "smart.temperature.${device}\t${value}\t${time}"
+      fi
+    done
+  fi
+
+  if [ -n "$(ls /dev/nvme? 2>/dev/null)" ]; then
+    for device in $(ls /dev/nvme? |  sed 's/\/dev\///'); do
+      local value=$(smartctl -A "/dev/${device}" 2>/dev/null | grep Temperature | head -n 1 | awk '{print $2}')
+      if [ -n "$value" ]; then
+        echo -e "smart.temperature.${device}\t${value}\t${time}"
+      fi
+    done
+  fi
 }
 
 if [ -n "${MACKEREL_AGENT_PLUGIN_META}" ]; then
